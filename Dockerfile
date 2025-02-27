@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=quay.io/jupyter/pytorch-notebook:cuda12-2024-07-29
+ARG BASE_IMAGE=quay.io/jupyter/scipy-notebook:2024-07-29
 
 FROM ${BASE_IMAGE}
 
