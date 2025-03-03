@@ -47,7 +47,13 @@ USER $NB_USER
 WORKDIR /home/${NB_USER}
 
 # Install Jupyter Desktop
-RUN /opt/conda/bin/conda install -y -q -c manics websockify
+RUN mamba install -y -q -c manics websockify
+RUN mamba install -y -q -c conda-forge nb_conda_kernels
 RUN pip install jupyter-remote-desktop-proxy jupyter-codeserver-proxy
+
+COPY env.yaml env.yaml
+
+RUN mamba env create -f env.yaml \
+ && rm -rf env.yaml
 
 ENV PATH=/opt/globusconnectpersonal-3.2.6:$PATH
