@@ -30,6 +30,12 @@ RUN apt-get -y update \
     tcllib \
     bart-cuda \
     bart-view \
+    gcc \
+    libfftw3-dev \
+    liblapacke-dev \
+    libopenblas-dev \
+    libpng-dev \
+    make \
  && apt clean \
  && rm -rf /var/lib/apt/lists/* \
  && fix-permissions "${CONDA_DIR}" \
