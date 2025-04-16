@@ -48,6 +48,9 @@ RUN wget https://downloads.globus.org/globus-connect-personal/linux/stable/globu
  && tar xzf globusconnectpersonal-latest.tgz \
  && rm globusconnectpersonal-latest.tgz
 
+RUN git clone https://github.com/pehses/twixtools.git \
+ && fix-permissions "/opt/twixtools"
+
 # Switch back to notebook user
 USER $NB_USER
 WORKDIR /home/${NB_USER}
@@ -57,6 +60,10 @@ RUN mamba install -y -q -c manics websockify
 RUN mamba install -y -q -c conda-forge nb_conda_kernels
 RUN pip install jupyter-remote-desktop-proxy jupyter-codeserver-proxy
 
+# Install twixtools:
+RUN pip install /opt/twixtools
+
+# Install flowvc environment
 COPY env.yaml env.yaml
 
 RUN mamba env create -f env.yaml \
